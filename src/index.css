@@ -20,7 +20,7 @@ body {
   box-shadow: none;
 }
 .pointer {
-  cusor: pointer;
+  cursor: pointer;
 }
 .name {
   font-size: 1.5em;
@@ -80,7 +80,7 @@ select {
   margin: 0px;
   outline: none;
 }
-.form long {
+.form .long {
   width: 100%;
 }
 .form .heading {

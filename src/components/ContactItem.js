@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class ContactItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+  deleteContactItem = () => {
+    this.props.deleteContact(this.props.no);
+  };
   render() {
     return (
       <div>
@@ -10,11 +16,12 @@ class ContactItem extends Component {
             <img
               src={this.props.photo}
               alt={this.props.name}
-              className="img-reponsive img-thumbnail photoWidth"
+              className="img-responsive img-thumbnail photoWidth"
             />
           </div>
           <div className="col-xs-8">
             <span className="name">{this.props.name}</span>
+            <br />
             <span className="glyphicon glyphicon-hand-right" />{" "}
             <span>id: {this.props.no}</span>
             <br />
@@ -25,6 +32,17 @@ class ContactItem extends Component {
             <span>{this.props.address}</span>
             <br />
           </div>
+          <div className="col-xs-1">
+            <div>
+              <button
+                className="btn btn-primary"
+                onClick={this.deleteContactItem}
+              >
+                X
+              </button>
+            </div>
+          </div>
+          <div className="clearfix" />
         </li>
       </div>
     );
@@ -36,6 +54,7 @@ ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
   tel: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired
+  photo: PropTypes.string.isRequired,
+  deleteContact: PropTypes.func.isRequired
 };
 export default ContactItem;

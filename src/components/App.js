@@ -5,6 +5,7 @@ import InputName from "./InputName";
 import ContactList from "./ContactList";
 import Loading from "./Loading";
 import { Portal } from "react-portal";
+import AddContact from "./AddContact";
 
 const BASEURL = "http://sample.bmaster.kro.kr";
 
@@ -14,7 +15,8 @@ class App extends Component {
     this.state = {
       contacts: [],
       isLoading: false,
-      name: ""
+      name: "",
+      showAddContact: false
     };
   }
   changeName = name => {
@@ -37,13 +39,37 @@ class App extends Component {
       this.setState({ contacts: [] });
     }
   };
+  changeShowAddContact = state => {
+    this.setState({ showAddContact: state });
+  };
+  addContact = (name, tel, address) => {
+    this.setState({ name: name });
+    axios.post(BASEURL + "/contacts", { name, tel, address }).then(response => {
+      if (response.data.status === "success") {
+        this.searchContact();
+      }
+      this.changeShowAddContact(false);
+    });
+  };
+  deleteContact = no => {
+    axios.delete(BASEURL + "/contacts/" + "no").then(response => {
+      this.searchContact();
+    });
+  };
   render() {
     return (
       <div className="container">
         <div className="well">
           <div className="col-xs-1" />
           <div className="title col-xs-10">::contact app</div>
-          <div className="col-xs-1" />
+          <div className="col-xs-1">
+            <button
+              className="btn btn-warning btn-circle"
+              onClick={() => this.changeShowAddContact(true)}
+            >
+              <span className="glyphicon glyphicon-plus" />
+            </button>
+          </div>
           <div className="clearfix" />
         </div>
         <div className="panel panel-default panel-borderless">
@@ -55,7 +81,18 @@ class App extends Component {
             />
           </div>
         </div>
-        <ContactList contacts={this.state.contacts} />
+        <ContactList
+          contacts={this.state.contacts}
+          deleteContact={this.deleteContact}
+        />
+        {this.state.showAddContact ? (
+          <AddContact
+            addContact={this.addContact}
+            changeShowAddContact={this.changeShowAddContact}
+          />
+        ) : (
+          ""
+        )}
         <Portal node={document && document.getElementById("modal-area")}>
           <Loading isLoading={this.state.isLoading}>
             <div className="well title">
