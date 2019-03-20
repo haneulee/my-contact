@@ -4,6 +4,7 @@ import ContactItem from "./ContactItem";
 
 class ContactList extends Component {
   render() {
+    console.log(this.props, this.props.contacts);
     let contacts = this.props.contacts.map(item => {
       return (
         <ContactItem
