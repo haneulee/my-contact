@@ -6,15 +6,15 @@ const mapStateToProps = state => {
   return {
     contacts: state.contacts,
     isLoading: state.isLoading,
-    name: state.name,
-    showAddContact: state.showAddContact
+    name: state.name
+    // showAddContact: state.showAddContact
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeShowAddContact: isShow =>
-      dispatch(ContactActionCreator.changeShowAddContact(isShow)),
+    // changeShowAddContact: isShow =>
+    //   dispatch(ContactActionCreator.changeShowAddContact(isShow)),
     changeName: name => dispatch(ContactActionCreator.changeName(name)),
     addContact: (name, tel, address) =>
       dispatch(ContactActionCreator.asyncAddContact(name, tel, address)),

@@ -1,0 +1,24 @@
+graph TD;
+
+Router --> App;
+App --> A[Route];
+App --> |/add|B[Route];
+App --> Portal;
+A --> SearchContainer;
+B --> AddContactContainer;
+AddContactContainer --> AddContact;
+SearchContainer --> Search;
+Search --> InputName;
+Search --> ContactList
+ContactList --> ContactItem;
+Portal --> LoadingContainer;
+LoadingContainer --> Loading;
+InputName -.-> ActionCreator;
+ContactItem -.-> ActionCreator;
+AddContact -.-> ActionCreator;
+ActionCreator -.-> Action;
+Action -.-> |dispatch|Store;
+Store -.-> |state와 dispatch를 props로 injection|AddContactContainer;
+Store -.-> SearchContainer;
+Store -.-> LoadingContainer;
+

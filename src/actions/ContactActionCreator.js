@@ -59,7 +59,7 @@ const ContactActionCreator = {
       axios
         .post(BASEURL + "/contacts", { name, tel, address })
         .then(response => {
-          dispatch(this.changeShowAddContact(false));
+          //   dispatch(this.changeShowAddContact(false));
           if (response.data.status === "sucess") {
             dispatch(this.changeIsLoading(false));
             dispatch(this.asyncSearchContact());

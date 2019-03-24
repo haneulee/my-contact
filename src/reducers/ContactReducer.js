@@ -37,10 +37,10 @@ const ContactReducer = (state = initialState, action) => {
       return (newState = update(state, {
         name: { $set: action.payload.name }
       }));
-    case Constant.CHANGE_SHOW_ADD_CONTACT:
-      return (newState = update(state, {
-        showAddContact: { $set: action.payload.showAddContact }
-      }));
+    // case Constant.CHANGE_SHOW_ADD_CONTACT:
+    //   return (newState = update(state, {
+    //     showAddContact: { $set: action.payload.showAddContact }
+    //   }));
     default:
       return state;
   }

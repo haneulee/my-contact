@@ -14,12 +14,14 @@ class AddContact extends Component {
     let address = this.addressInput.value;
     if (name !== "" && tel !== "" && address !== "") {
       this.props.addContact(name, tel, address);
+      this.props.history.push("/");
     } else {
       alert("fill in all fields...");
     }
   };
   cancel = () => {
-    this.props.changeShowAddContact(false);
+    // this.props.changeShowAddContact(false);
+    this.props.history.push("/");
   };
   render() {
     return (
@@ -84,8 +86,8 @@ class AddContact extends Component {
 }
 
 AddContact.propTypes = {
-  addContact: PropTypes.func.isRequired,
-  changeShowAddContact: PropTypes.func.isRequired
+  addContact: PropTypes.func.isRequired
+  // changeShowAddContact: PropTypes.func.isRequired
 };
 
 export default AddContact;
