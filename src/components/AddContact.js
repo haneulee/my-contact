@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ContactActionCreator from "../actions/ContactActionCreator";
+import { connect } from "react-redux";
 
 class AddContact extends Component {
   constructor(props) {
@@ -90,4 +92,16 @@ AddContact.propTypes = {
   // changeShowAddContact: PropTypes.func.isRequired
 };
 
-export default AddContact;
+const mapDispatchToProps = dispatch => {
+  return {
+    addContact: (name, tel, address) =>
+      dispatch(ContactActionCreator.asyncAddContact(name, tel, address))
+  };
+};
+
+const AddContactContainer = connect(
+  null,
+  mapDispatchToProps
+)(AddContact);
+
+export default AddContactContainer;

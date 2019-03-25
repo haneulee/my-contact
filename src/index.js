@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-import AppContainer from "./components/AppContainer";
+import App from "./components/App";
 import ContactStore from "./store/ContactStore";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={ContactStore}>
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById("root")
 );

@@ -9,6 +9,8 @@ import AddContact from "./AddContact";
 import PropTypes from "prop-types";
 import Search from "./Search";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import routes from "../routes";
 
 const BASEURL = "http://sample.bmaster.kro.kr";
 
@@ -63,14 +65,15 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <Route
+          {renderRoutes(routes)}
+          {/* <Route
             path="/"
             render={props2 => <Search {...props2} {...this.props} />}
           />
           <Route
             path="/add"
             render={props2 => <AddContact {...props2} {...this.props} />}
-          />
+          /> */}
           {/* <div className="well">
             <div className="col-xs-1" />
             <div className="title col-xs-10">::contact app</div>
@@ -117,17 +120,5 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  // changeShowAddContact: PropTypes.func.isRequired,
-  changeName: PropTypes.func.isRequired,
-  addContact: PropTypes.func.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-  searchContact: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(PropTypes.object),
-  isLoading: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired
-  // showAddContact: PropTypes.bool.isRequired
-};
 
 export default App;

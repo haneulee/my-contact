@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Loading extends Component {
   render() {
@@ -15,6 +16,17 @@ class Loading extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading
+  };
+};
+
+const LoadingContainer = connect(
+  mapStateToProps,
+  null
+)(Loading);
+
 Loading.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
@@ -22,4 +34,4 @@ Loading.propTypes = {
 Loading.defaultProps = {
   isLoading: false
 };
-export default Loading;
+export default LoadingContainer;
